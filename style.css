@@ -478,3 +478,210 @@ footer .small {
   background-color: var(--black);
   color: var(--gold);
 }
+
+/* ────────────────────────────────────────────────────────────────────────────
+   LOADING CURTAIN STYLES (two‐line text, centered, with extra spacing)
+   ──────────────────────────────────────────────────────────────────────────── */
+
+/* 1) Full‐screen overlay */
+#loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff8dc; /* Pale gold background */
+  z-index: 2000;             /* Sit above everything else */
+  overflow: hidden;
+}
+
+/* 2) The two horizontal lines */
+.loading-line {
+  position: absolute;
+  height: 4px;               /* Thickness of each line */
+  background-color: #ffd700; /* Bright gold */
+}
+
+/* 2a) Top bar: now sits at 40% so there's room for two‐line text */
+.loading-line.top {
+  top: 40%;
+  left: 0;
+  width: 0;                  /* Start hidden (0 width) */
+  animation: slideInLTR 3s ease-out forwards;
+}
+
+/* 2b) Bottom bar: now sits at 60% */
+.loading-line.bottom {
+  top: 60%;
+  right: 0;
+  width: 0;                  /* Start hidden */
+  animation: slideInRTL 3s ease-out forwards;
+}
+
+/* 3) Keyframes (no change) */
+@keyframes slideInLTR {
+  to { width: 100%; }
+}
+@keyframes slideInRTL {
+  to { width: 100%; }
+}
+
+/* 4) Centered, two‐line text between the bars */
+.loading-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;           /* Adjust as needed */
+  font-weight: 700;
+  color: #ffd700;            /* Gold text */
+  text-align: center;        /* Center both lines */
+  white-space: nowrap;       /* Prevent each line from breaking separately */
+
+  /* If you explicitly inserted a <br> in your HTML like:
+       <div class="loading-text">
+         Extravagant Unique<br>Designs
+       </div>
+     this text‐align/transform combo will center those two lines perfectly. */
+}
+
+/* 5) Fade‐out animation */
+#loading-overlay.fade-out {
+  animation: fadeOutOverlay 0.5s ease-in forwards;
+}
+@keyframes fadeOutOverlay {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+    /* ─────────────────────────────────────────────────────────
+   2A) Transform CTA – Background Container
+   ───────────────────────────────────────────────────────── */
+#transform-cta .transform-bg {
+  /* Use your swirling background exactly as the “Renew/Restore/Reveal” section */
+  background: url('images/wp12821797.webp') center/cover no-repeat;
+  position: relative;
+  padding: 6rem 0;                  /* top & bottom padding – adjust if you need more or less vertical space */
+}
+
+/* ─────────────────────────────────────────────────────────
+   2B) Transform CTA – Glass Panel (centers all content)
+   ───────────────────────────────────────────────────────── */
+#transform-cta .transform-panel {
+  /* Make it translucent/frosted */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  /* White border & rounding */
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+
+  /* Constrain width and center horizontally */
+  max-width: 800px;      /* caps the glass panel’s width on large screens */
+  margin: 0 auto;        /* center in the parent .transform-bg */
+
+  /* Padding for content inside */
+  padding: 2rem 2.5rem;
+
+  /* Center text & items */
+  text-align: center;
+  color: #fff;           /* all text inside will be white */
+}
+
+/* ─────────────────────────────────────────────────────────
+   2C) Transform CTA – Heading / Paragraph / Button styling
+   ───────────────────────────────────────────────────────── */
+#transform-cta .transform-panel h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;     /* adjust as needed */
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+#transform-cta .transform-panel p {
+  font-size: 1.125rem;
+  margin-bottom: 1.75rem;
+  line-height: 1.6;
+  max-width: 700px;      /* optional, limits paragraph width inside panel */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Use the same yellow/black button style you already have */
+#transform-cta .transform-panel .btn-primary {
+  background-color: #ffd700;   /* bright yellow */
+  color: #000;                 /* black text */
+  padding: 0.75rem 1.75rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+#transform-cta .transform-panel .btn-primary:hover {
+  background-color: #e6c200;   /* slightly darker yellow on hover */
+  color: #000;
+}
+/* ─────────────────────────────────────────────────────────
+   Add vertical fade at top & bottom of the swirl background
+───────────────────────────────────────────────────────── */
+#transform-cta .transform-bg {
+  /* 1) Keep the exact same background rules as before: */
+  background: url('images/wp12821797.webp') center/cover no-repeat;
+  position: relative;
+  padding: 6rem 0;
+
+  /* 2) Apply a mask that is transparent at the very top/bottom, solid in between */
+  -webkit-mask-image: 
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0%,     /* transparent at 0% (very top) */
+      rgba(0,0,0,1) 10%,    /* fade up to fully opaque by 10% down */
+      rgba(0,0,0,1) 90%,    /* remain fully opaque until 90% down */
+      rgba(0,0,0,0) 100%    /* fade back to transparent at 100% (very bottom) */
+    );
+  mask-image: 
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,1) 10%,
+      rgba(0,0,0,1) 90%,
+      rgba(0,0,0,0) 100%
+    );
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* ─────────────────────────────────────────────────────────
+   2D) Responsive Adjustments
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Reduce padding on transform-bg so it isn’t too tall on small screens */
+  #transform-cta .transform-bg {
+    padding: 4rem 0;
+  }
+  /* Shrink the “glass panel” horizontally on mobile */
+  #transform-cta .transform-panel {
+    padding: 1.5rem 1.25rem;
+    max-width: 90vw;   /* panel can be up to 90% of viewport width */
+  }
+  /* Shrink heading/text slightly */
+  #transform-cta .transform-panel h2 {
+    font-size: 2rem;
+  }
+  #transform-cta .transform-panel p {
+    font-size: 1rem;
+  }
+  /* Let the button span most of the panel’s width on mobile */
+  #transform-cta .transform-panel .btn-primary {
+    width: 100%;
+    padding: 0.75rem 0;
+    font-size: 1rem;
+  }
+}

@@ -11,6 +11,21 @@
   <link href="style.css" rel="stylesheet">
 </head>
 <body>
+  <!-- ────────────────────────────────────────────────────────────────────
+       Loading Overlay / Curtain (with text between lines)
+       ──────────────────────────────────────────────────────────────────── -->
+  <div id="loading-overlay">
+    <div class="loading-line top"></div>
+
+    <!-- CENTERED TEXT: “Extravagant Unique Designs” -->
+    <div class="loading-text">Beauty Enhancers</div>
+
+    <div class="loading-line bottom"></div>
+  </div>
+
+  <!-- ────────────────────────────────────────────────────────────────────
+       …the rest of your page content follows below…
+       ──────────────────────────────────────────────────────────────────── -->
 
   <!-- 0. Translucent Navbar -->
   <nav class="navbar navbar-expand-lg">
@@ -211,15 +226,21 @@
   </div>
 </section>
 
-<!-- Final CTA -->
-<section id="final-cta" class="py-5 text-center" style="background-color: var(--dark-gray);">
-  <div class="container">
-    <h2 class="mb-3">Ready to Elevate Your Beauty?</h2>
-    <p class="mb-4">Book an appointment with our experts or browse our signature products today.</p>
-    <a href="#services" class="btn-book me-3">Book Now</a>
-    <a href="#products" class="btn-outline-gold">Shop Products</a>
+<!-- ───────────────────────────────────────────────────
+     TRANSFORM CTA SECTION
+─────────────────────────────────────────────────── -->
+<section id="transform-cta">
+  <!-- full‐width background container -->
+  <div class="transform-bg">
+    <!-- the frosted‐glass panel centered inside -->
+    <div class="transform-panel container">
+      <h2>Ready to Transform?</h2>
+      <p>Click below to book your appointment instantly. We can’t wait to make you feel radiant!</p>
+      <a href="#booking" class="btn btn-primary">Book Online</a>
+    </div>
   </div>
 </section>
+
 
 <!-- Footer -->
 <footer class="py-4 text-center">
@@ -249,7 +270,17 @@
 
   <!-- Bootstrap JS Bundle (with Popper) -->
   <script>
+    window.addEventListener('load', () => {
+      const overlay = document.getElementById('loading-overlay');
+      if (!overlay) return;
 
+      // Wait for 3 seconds (animation duration) before starting the fade-out
+      setTimeout(() => {
+        overlay.classList.add('fade-out');
+        // After the 0.5s fade-out completes, remove the overlay element
+        setTimeout(() => overlay.remove(), 500);
+      }, 3000);
+    });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
