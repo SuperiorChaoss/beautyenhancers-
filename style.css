@@ -312,7 +312,8 @@ footer .small {
   border-radius: 3px;
 }
 #new-arrivals .row > [class*="col-"] {
-  border: 2px solid var(--gold);
+  border: 5px solid var(--gold);
+  background-color: var(--black);
   border-radius: 0.5rem;
   overflow: hidden;
   transition: transform 0.3s ease;
@@ -335,7 +336,7 @@ footer .small {
     padding-bottom: 0;
   }
   #new-arrivals .row > [class*="col-"] {
-    flex: 0 0 calc((100% - 2 * 1.5rem) / 3) !important;
+    flex: 0 0 calc((100% - 2 * 1.5rem) / 3) !important ;
     width: auto !important;
     padding: 1rem 0.5rem;
   }
